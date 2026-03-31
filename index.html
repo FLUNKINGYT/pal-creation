@@ -729,6 +729,138 @@ section.reveal{
         font-size:14px;
     }
 }   
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    font-family:'Playfair Display',serif;
+    font-size:22px;
+    font-weight:700;
+    color:#2b2b2b;
+    transition:0.3s ease;
+}
+
+.logo img{
+    width:52px;
+    height:52px;
+    object-fit:contain;   /* keeps logo sharp */
+    padding:4px;
+    background:white;
+    border-radius:14px;   /* soft square instead of circle */
+    box-shadow:0 6px 18px rgba(255,126,166,0.18);
+    image-rendering:auto;
+    transition:all 0.3s ease;
+}
+
+.logo span{
+    transition:0.3s ease;
+}
+
+.logo:hover span{
+    color:#ff7ea6;
+}
+
+.logo:hover img{
+    transform:scale(1.05);
+    box-shadow:0 10px 24px rgba(255,126,166,0.28);
+}
+.logo{
+    padding:6px 12px;
+    border-radius:50px;
+    background:rgba(255,255,255,0.5);
+    backdrop-filter:blur(10px);
+}
+
+.premium-why{
+    text-align:center;
+}
+
+.why-subtitle{
+    color:#777;
+    margin-top:-20px;
+    margin-bottom:45px;
+    font-size:15px;
+}
+
+.feature-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:25px;
+}
+
+/* PREMIUM CARD */
+.feature{
+    background:rgba(255,255,255,0.65);
+    backdrop-filter:blur(14px);
+    padding:30px 25px;
+    border-radius:24px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+    transition:all 0.4s ease;
+    box-shadow:0 10px 25px rgba(0,0,0,0.06);
+}
+
+/* gradient border glow */
+.feature::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:24px;
+    padding:1px;
+    background:linear-gradient(135deg,#f4b6c2,#ff7ea6);
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite:xor;
+            mask-composite:exclude;
+}
+
+/* icon */
+.feature i{
+    font-size:30px;
+    color:#ff7ea6;
+    margin-bottom:15px;
+    transition:0.4s;
+}
+
+/* title */
+.feature h3{
+    font-family:'Playfair Display',serif;
+    margin-bottom:10px;
+}
+
+/* text */
+.feature p{
+    font-size:14px;
+    color:#666;
+    line-height:1.6;
+}
+
+/* hover effect */
+.feature:hover{
+    transform:translateY(-10px) scale(1.02);
+    box-shadow:0 20px 45px rgba(255,126,166,0.18);
+}
+
+.feature:hover i{
+    transform:scale(1.2) rotate(8deg);
+}
+
+/* subtle glow background */
+.feature::after{
+    content:"";
+    position:absolute;
+    width:200px;
+    height:200px;
+    background:#ffb6c1;
+    filter:blur(80px);
+    opacity:0.2;
+    top:-50px;
+    right:-50px;
+}
 </style>
 </head>
 <body>
@@ -738,7 +870,10 @@ section.reveal{
 </div>
 
 <nav>
-    <a href="#" class="logo">Pal's Creation</a>
+    <a href="#" class="logo">
+    <img src="Pal's creation.jpg" alt="Pal's Creation Logo">
+    <span>Pal's Creation</span>
+</a>
 
     <div class="nav-links" id="navLinks">
         <a href="#menu">Menu</a>
@@ -907,7 +1042,7 @@ section.reveal{
 
     <div class="insta-grid">
         <div class="insta-post">
-            <img src="cake2.jpeg" alt="Cake">
+            <img src="donut.png" alt="Cake">
         </div>
         <div class="insta-post">
             <img src="cupcake.jpeg" alt="Cupcakes">
@@ -922,18 +1057,32 @@ section.reveal{
     <span><i class="fa-solid fa-star"></i></span>
 </div>
 
-<section id="why">
-    <section id="why" class="reveal"></section>
+<section id="why" class="reveal premium-why">
     <h2 class="section-title">Why Choose Us</h2>
+    <p class="why-subtitle">Because every bite should feel special 💖</p>
 
     <div class="feature-grid">
-        <div class="feature"><i class="fa-solid fa-cake-candles"></i><br>Premium Quality</div><br>  
 
+        <div class="feature">
+            <i class="fa-solid fa-cake-candles"></i>
+            <h3>Premium Quality</h3>
+            <p>We use top-quality ingredients to create rich and delicious desserts.</p>
+        </div>
 
-        <div class="feature"><i class="fa-solid fa-house"></i><br>Fresh ingredients and handcrafted perfection.</div>
+        <div class="feature">
+            <i class="fa-solid fa-heart"></i>
+            <h3>Made with Love</h3>
+            <p>Every cake is handcrafted with care, passion, and attention to detail.</p>
+        </div>
+
+        <div class="feature">
+            <i class="fa-solid fa-palette"></i>
+            <h3>Custom Designs</h3>
+            <p>Unique theme cakes designed exactly how you imagine them.</p>
+        </div>
+
     </div>
 </section>
-
 <section id="contact" class="cta">
     <section id="contact" class="cta reveal"></section>
     <div class="cta-container">
