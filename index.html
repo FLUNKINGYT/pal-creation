@@ -668,36 +668,67 @@ section.reveal{
 }
 
 
-/* ===== MENU DOWNLOAD BUTTONS ===== */
-.menu-downloads{
+
+.premium-menu{
+    position:relative;
+}
+
+.menu-subtitle{
+    text-align:center;
+    color:#777;
+    margin-top:-25px;
+    margin-bottom:35px;
+    font-size:15px;
+}
+
+.menu-tabs{
     display:flex;
     justify-content:center;
-    gap:18px;
+    gap:14px;
     flex-wrap:wrap;
-    margin-bottom:40px;
+    margin-bottom:45px;
 }
 
-.menu-btn{
-    text-decoration:none;
-    padding:14px 24px;
-    border-radius:50px;
-    background:linear-gradient(135deg,#fff,#ffeaf0);
-    color:#ff7ea6;
-    font-weight:600;
-    border:1px solid rgba(255,126,166,0.2);
-    box-shadow:0 10px 25px rgba(0,0,0,0.06);
-    transition:0.3s ease;
-    display:flex;
-    align-items:center;
-    gap:10px;
+.tab{
+    padding:12px 24px;
+    border:none;
+    border-radius:40px;
+    background:rgba(255,255,255,0.8);
+    backdrop-filter:blur(10px);
+    font-weight:500;
+    cursor:pointer;
+    transition:all 0.3s ease;
+    box-shadow:0 8px 20px rgba(0,0,0,0.06);
 }
 
-.menu-btn:hover{
-    transform:translateY(-3px);
+.tab.active,
+.tab:hover{
     background:linear-gradient(135deg,#f4b6c2,#ff7ea6);
     color:white;
-    box-shadow:0 15px 30px rgba(255,126,166,0.25);
+    transform:translateY(-2px);
+    box-shadow:0 12px 25px rgba(255,126,166,0.22);
 }
+
+.menu-item{
+    transition:all 0.4s ease;
+}
+
+.menu-item.hide{
+    opacity:0;
+    transform:scale(0.95);
+    pointer-events:none;
+}
+
+@media(max-width:768px){
+    .menu-tabs{
+        gap:10px;
+    }
+
+    .tab{
+        padding:10px 18px;
+        font-size:14px;
+    }
+}   
 </style>
 </head>
 <body>
@@ -738,47 +769,140 @@ section.reveal{
 <div class="section-divider">
     <span><i class="fa-solid fa-cake-candles"></i></span>
 </div>
-<section id="menu">
-    <h2 class="section-title">Our Menu</h2>
+<section id="menu" class="reveal premium-menu">
+    <h2 class="section-title">Our Signature Menu</h2>
+    <p class="menu-subtitle">Freshly baked delights crafted with love for every celebration</p>
 
-    <div class="menu-downloads">
-        <a href="menu-cakes.pdf" download class="menu-btn">
-            <i class="fa-solid fa-download"></i> Download Cake Menu
-        </a>
-
-        <a href="menu-desserts.pdf" download class="menu-btn">
-            <i class="fa-solid fa-download"></i> Download Dessert Menu
-        </a>
+    <div class="menu-tabs">
+        <button class="tab active" onclick="filterMenu('all', this)">All</button>
+        <button class="tab" onclick="filterMenu('cake', this)">Cakes</button>
+        <button class="tab" onclick="filterMenu('cupcake', this)">Cupcakes</button>
+        <button class="tab" onclick="filterMenu('cookie', this)">Cookies</button>
+        <button class="tab" onclick="filterMenu('brownie', this)">Brownies</button>
+        <button class="tab" onclick="filterMenu('custom', this)">Theme Cakes</button>
     </div>
 
     <div class="product-grid">
-        <div class="card">
-            <img src="cake2.jpeg" alt="Chocolate Cake">
+
+        <!-- CAKES -->
+        <div class="card menu-item" data-category="cake">
+            <img src="cake 5.jpeg" alt="Chocolate Truffle Cake">
             <div class="card-content">
-                <h3>Chocolate Cake</h3>
-                <div class="price">₹700/(500gm)</div>
-                <button class="btn primary" onclick="orderItem('Chocolate Cake')">
+                <h3>2 tier 2 flavour cake</h3>
+                <div class="price">₹700 / 500gm</div>
+                <button class="btn primary" onclick="orderItem('Chocolate Truffle Cake')">
                     <i class="fa-brands fa-whatsapp"></i> Order
                 </button>
             </div>
         </div>
 
-        <div class="card">
-            <img src="cupcake.jpeg" alt="Cupcakes">
+        <div class="card menu-item" data-category="cake">
+            <img src="cake6.jpeg" alt="Red Velvet Cake">
             <div class="card-content">
-                <h3>Cupcakes</h3>
-                <div class="price">₹240</div>
-                <button class="btn primary" onclick="orderItem('Cupcakes')">
+                <h3>Chocolate Cake </h3>
+                <div class="price">₹700 / 500gm</div>
+                <button class="btn primary" onclick="orderItem('Red Velvet Cake')">
+                    <i class="fa-brands fa-whatsapp"></i> Order
+                </button>
+            </div>
+        </div>
+<div class="card menu-item" data-category="cake">
+            <img src="cheese jar cake.jpeg" alt="Red Velvet Cake">
+            <div class="card-content">
+                <h3>Cheese Cake Jar </h3>
+                <div class="price">₹220 /Jar</div>
+                <button class="btn primary" onclick="orderItem('Red Velvet Cake')">
+                    <i class="fa-brands fa-whatsapp"></i> Order
+                </button>
+            </div>
+        </div>
+
+        <div class="card menu-item" data-category="cake">
+            <img src="Taco Cake.jpeg" alt="Red Velvet Cake">
+            <div class="card-content">
+                <h3>Taco Cake </h3>
+                <div class="price">₹220 /Taco</div>
+                <button class="btn primary" onclick="orderItem('Red Velvet Cake')">
+                    <i class="fa-brands fa-whatsapp"></i> Order
+                </button>
+            </div>
+        </div>
+        <!-- CUPCAKES -->
+        <div class="card menu-item" data-category="cupcake">
+            <img src="cupcake.jpeg" alt="Vanilla Cupcakes">
+            <div class="card-content">
+                <h3> Cupcakes</h3>
+                <div class="price">₹240 / box</div>
+                <button class="btn primary" onclick="orderItem('Vanilla Cupcakes')">
+                    <i class="fa-brands fa-whatsapp"></i> Order
+                </button>
+            </div>
+        </div>
+
+        <!-- COOKIES -->
+        <div class="card menu-item" data-category="cookie">
+            <img src="cookies.jpeg" alt="Cookies">
+            <div class="card-content">
+                <h3>Classic Cookies</h3>
+                <div class="price">₹180 / box</div>
+                <button class="btn primary" onclick="orderItem('Cookies')">
+                    <i class="fa-brands fa-whatsapp"></i> Order
+                </button>
+            </div>
+        </div>
+
+        <div class="card menu-item" data-category="cookie">
+            <img src="Baklava Cookie.jpeg" alt="Cookies">
+            <div class="card-content">
+                <h3>Baklava Cookie</h3>
+                <div class="price">₹400 / box</div>
+                <button class="btn primary" onclick="orderItem('Cookies')">
+                    <i class="fa-brands fa-whatsapp"></i> Order
+                </button>
+            </div>
+        </div>
+
+        <!-- BROWNIES -->
+        <div class="card menu-item" data-category="brownie">
+            <img src="brownie.jpg" alt="Brownies">
+            <div class="card-content">
+                <h3>Chocolate Brownies</h3>
+                <div class="price">₹320 / box</div>
+                <button class="btn primary" onclick="orderItem('Chocolate Brownies')">
+                    <i class="fa-brands fa-whatsapp"></i> Order
+                </button>
+            </div>
+        </div>
+
+        <!-- CUSTOM THEME CAKES -->
+        <div class="card menu-item" data-category="custom">
+            <img src="Custom cake.jpeg" alt="Custom Theme Cake">
+            <div class="card-content">
+                <h3>Customized Chota Bheem Cake</h3>
+                <div class="price"></div>
+                <button class="btn primary" onclick="orderItem('Custom Theme Cake')">
+                    <i class="fa-brands fa-whatsapp"></i> Order
+                </button>
+            </div>
+        </div>
+<div class="card menu-item" data-category="custom">
+            <img src="custom cake 2.jpeg" alt="Custom Theme Cake">
+            <div class="card-content">
+                <h3>Customized cindrella Cake</h3>
+                <div class="price"></div>
+                <button class="btn primary" onclick="orderItem('Custom Theme Cake')">
                     <i class="fa-brands fa-whatsapp"></i> Order
                 </button>
             </div>
         </div>
     </div>
 </section>
+
 <div class="section-divider">
     <span><i class="fa-solid fa-cake-candles"></i></span>
 </div>
 <section id="gallery">
+    <section id="gallery" class="reveal"></section>
     <h2 class="section-title">Latest Creations</h2>
 
     <div class="insta-grid">
@@ -799,6 +923,7 @@ section.reveal{
 </div>
 
 <section id="why">
+    <section id="why" class="reveal"></section>
     <h2 class="section-title">Why Choose Us</h2>
 
     <div class="feature-grid">
@@ -810,6 +935,7 @@ section.reveal{
 </section>
 
 <section id="contact" class="cta">
+    <section id="contact" class="cta reveal"></section>
     <div class="cta-container">
 
         <div class="cta-content">
@@ -895,7 +1021,7 @@ window.addEventListener("scroll",()=>{
 });
 
 
-const reveals = document.querySelectorAll("section");
+const reveals = document.querySelectorAll(".reveal");
 
 window.addEventListener("scroll",()=>{
     reveals.forEach(sec=>{
@@ -917,6 +1043,27 @@ window.addEventListener("scroll",()=>{
         }
     });
 });
+
+
+function filterMenu(category, button){
+    const cards = document.querySelectorAll(".menu-item");
+    const tabs = document.querySelectorAll(".tab");
+
+    tabs.forEach(tab => tab.classList.remove("active"));
+    button.classList.add("active");
+
+    cards.forEach(card => {
+        if(category === "all" || card.dataset.category === category){
+            card.style.display = "block";
+            setTimeout(() => {
+                card.style.opacity = "1";
+                card.style.transform = "translateY(0)";
+            }, 100);
+        } else {
+            card.style.display = "none";
+        }
+    });
+}
 </script>
 
 </body>
