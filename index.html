@@ -656,9 +656,15 @@ footer{
 
 
 section{
+    opacity:1;
+    transform:translateY(0);
+    transition:0.8s;
+}
+
+/* only animate sections below hero */
+section.reveal{
     opacity:0;
     transform:translateY(40px);
-    transition:0.8s;
 }
 
 
