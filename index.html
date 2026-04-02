@@ -25,27 +25,135 @@ body{
 }
 
 /* LOADER */
+/* ===== PREMIUM BAKERY LOADER ===== */
+/* ===== ULTRA PREMIUM LOGO LOADER ===== */
 #loader{
     position:fixed;
     inset:0;
-    background:#fff8f6;
+    background:linear-gradient(135deg,#fff8f6,#ffeaf0);
     display:flex;
     justify-content:center;
     align-items:center;
     z-index:9999;
-    transition:opacity .6s ease, visibility .6s ease;
-}
-.loader-text{
-    font-family:'Playfair Display',serif;
-    font-size:32px;
-    animation:pulse 1.5s infinite;
-}
-@keyframes pulse{
-    0%{opacity:.3;}
-    50%{opacity:1;}
-    100%{opacity:.3;}
+    transition:opacity 1s ease, visibility 1s ease;
 }
 
+/* loader box */
+.premium-loader-box{
+    position:relative;
+    background:rgba(255,255,255,0.72);
+    backdrop-filter:blur(20px);
+    padding:45px 55px;
+    border-radius:30px;
+    text-align:center;
+    box-shadow:0 20px 60px rgba(255,126,166,0.14);
+    min-width:340px;
+    overflow:hidden;
+}
+
+/* soft glow blob */
+.premium-loader-box::before{
+    content:"";
+    position:absolute;
+    width:180px;
+    height:180px;
+    background:#ffb6c1;
+    border-radius:50%;
+    filter:blur(70px);
+    top:-60px;
+    right:-60px;
+    opacity:0.28;
+}
+
+/* logo */
+.loader-logo{
+    width:78px;
+    height:78px;
+    object-fit:contain;
+    border-radius:18px;
+    background:white;
+    padding:6px;
+    box-shadow:0 10px 25px rgba(255,126,166,0.2);
+    margin-bottom:18px;
+    position:relative;
+    animation:floatLogo 2.2s ease-in-out infinite;
+}
+
+/* glowing ring */
+.loader-logo::after{
+    content:"";
+    position:absolute;
+    inset:-8px;
+    border-radius:22px;
+    border:1px solid rgba(255,126,166,0.25);
+}
+
+/* brand name */
+.premium-loader-box h2{
+    font-family:'Playfair Display',serif;
+    font-size:32px;
+    margin-bottom:16px;
+    background:linear-gradient(90deg,#ff7ea6,#f4b6c2,#ff7ea6);
+    background-size:200% auto;
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation:shineText 2s linear infinite;
+}
+
+/* premium progress bar */
+
+
+/* dots */
+.loader-dots{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+}
+
+.loader-dots span{
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:#ff7ea6;
+    animation:bounce 1s infinite ease-in-out;
+}
+
+.loader-dots span:nth-child(2){
+    animation-delay:0.2s;
+}
+
+.loader-dots span:nth-child(3){
+    animation-delay:0.4s;
+}
+
+/* animations */
+@keyframes floatLogo{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-6px);
+    }
+}
+
+@keyframes shineText{
+    to{
+        background-position:200% center;
+    }
+}
+
+
+
+@keyframes bounce{
+    0%,100%{
+        transform:translateY(0);
+        opacity:0.6;
+    }
+    50%{
+        transform:translateY(-6px);
+        opacity:1;
+    }
+}
 /* NAVBAR */
 nav{
     position:sticky;
@@ -168,8 +276,8 @@ nav{
 }
 
 .primary:hover{
-    transform:translateY(-4px);
-    box-shadow:0 15px 30px rgba(255,126,166,.35);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(255,126,166,.35);
 }
 
 .hero-card img{
@@ -469,6 +577,31 @@ footer{
     margin-top:70px;
 }
 
+
+footer{
+    position:relative;
+    background:rgba(255,255,255,0.78);
+    backdrop-filter:blur(18px);
+    border-top:none;
+} 
+
+footer::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:85%;
+    height:1px;
+    background:linear-gradient(
+        to right,
+        transparent,
+        #f4b6c2,
+        #ff7ea6,
+        #f4b6c2,
+        transparent
+    );
+} 
 .footer-left h2{
     font-family:'Playfair Display',serif;
     font-size:28px;
@@ -505,23 +638,25 @@ footer{
 }
 
 .footer-social a{
-    width:45px;
-    height:45px;
-    border-radius:50%;
-    background:white;
+    width:48px;
+    height:48px;
+    border-radius:18px;
+    background:rgba(255,255,255,0.8);
+    backdrop-filter:blur(10px);
     display:flex;
     justify-content:center;
     align-items:center;
     font-size:20px;
     color:#444;
-    box-shadow:0 8px 20px rgba(0,0,0,.08);
-    transition:.3s;
+    box-shadow:0 10px 24px rgba(0,0,0,.06);
+    transition:all .35s ease;
 }
 
 .footer-social a:hover{
     color:white;
     background:linear-gradient(135deg,#f4b6c2,#ff7ea6);
-    transform:translateY(-4px);
+    transform:translateY(-6px) scale(1.05);
+    box-shadow:0 16px 30px rgba(255,126,166,.22);
 }
 
 .copyright{
@@ -664,7 +799,7 @@ section{
 /* only animate sections below hero */
 section.reveal{
     opacity:0;
-    transform:translateY(40px);
+    transform:translateY(30px) scale(0.98);
 }
 
 
@@ -861,12 +996,98 @@ section.reveal{
     top:-50px;
     right:-50px;
 }
+
+
+.hero{
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before{
+    content: "";
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    background: #ffb6c1;
+    border-radius: 50%;
+    filter: blur(120px);
+    top: 10%;
+    left: -80px;
+    opacity: 0.25;
+    z-index: 0;
+}
+
+.hero::after{
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: #f4b6c2;
+    border-radius: 50%;
+    filter: blur(100px);
+    bottom: 5%;
+    right: -50px;
+    opacity: 0.2;
+    z-index: 0;
+}
+
+.hero-text,
+.hero-card{
+    position: relative;
+    z-index: 1;
+}
+
+
+.hero-card img{
+    animation: heroFloat 4s ease-in-out infinite;
+}
+
+@keyframes heroFloat{
+    0%,100%{
+        transform: translateY(0);
+    }
+    50%{
+        transform: translateY(-12px);
+    }
+}
+
+
+.card{
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(255,255,255,0.5);
+    border-radius: 24px;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.06);
+}
+
+footer{
+    position: relative;
+}
+
+footer::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:80%;
+    height:1px;
+    background:linear-gradient(to right, transparent, #ff7ea6, transparent);
+}
 </style>
 </head>
 <body>
 
 <div id="loader">
-    <div class="loader-text">Pal's Creation</div>
+    <div class="premium-loader-box">
+        <img src="Pal's creation.jpg" alt="Pal's Creation Logo" class="loader-logo">
+        <h2>Pal's Creation</h2>    
+        <div class="loader-dots">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
 </div>
 
 <nav>
@@ -921,43 +1142,43 @@ section.reveal{
 
         <!-- CAKES -->
         <div class="card menu-item" data-category="cake">
-            <img src="cake7.jpeg" alt="Chocolate Truffle Cake">
+            <img src="cake7.jpeg" alt="Classic Vanilla Elegance">
             <div class="card-content">
                 <h3>Classic Vanilla Elegance</h3>
-                <div class="price">₹700 / 500gm</div>
-                <button class="btn primary" onclick="orderItem('Chocolate Truffle Cake')">
+                <div class="price">₹750 / 500gm</div>
+                <button class="btn primary" onclick="orderItem('Classic Vanilla Cake')">
                     <i class="fa-brands fa-whatsapp"></i> Order
                 </button>
             </div>
         </div>
 
         <div class="card menu-item" data-category="cake">
-            <img src="cake6.jpeg" alt="Red Velvet Cake">
+            <img src="cake6.jpeg" alt="Chocolate Cake">
             <div class="card-content">
                 <h3>Chocolate Cake </h3>
                 <div class="price">₹700 / 500gm</div>
-                <button class="btn primary" onclick="orderItem('Red Velvet Cake')">
+                <button class="btn primary" onclick="orderItem('Chocolate Cake')">
                     <i class="fa-brands fa-whatsapp"></i> Order
                 </button>
             </div>
         </div>
 <div class="card menu-item" data-category="cake">
-            <img src="cheese jar cake.jpeg" alt="Red Velvet Cake">
+            <img src="cheese jar cake.jpeg" alt="Cheese Cake Jar">
             <div class="card-content">
                 <h3>Cheese Cake Jar </h3>
                 <div class="price">₹220 /Jar</div>
-                <button class="btn primary" onclick="orderItem('Red Velvet Cake')">
+                <button class="btn primary" onclick="orderItem('Cheese Cake Jar')">
                     <i class="fa-brands fa-whatsapp"></i> Order
                 </button>
             </div>
         </div>
 
         <div class="card menu-item" data-category="cake">
-            <img src="Taco Cake.jpeg" alt="Red Velvet Cake">
+            <img src="Taco Cake.jpeg" alt="Taco Cake">
             <div class="card-content">
                 <h3>Taco Cake </h3>
                 <div class="price">₹220 /Taco</div>
-                <button class="btn primary" onclick="orderItem('Red Velvet Cake')">
+                <button class="btn primary" onclick="orderItem('Taco Cake')">
                     <i class="fa-brands fa-whatsapp"></i> Order
                 </button>
             </div>
@@ -979,8 +1200,8 @@ section.reveal{
             <img src="cookies.jpeg" alt="Cookies">
             <div class="card-content">
                 <h3>Classic Cookies</h3>
-                <div class="price">₹180 / box</div>
-                <button class="btn primary" onclick="orderItem('Cookies')">
+                <div class="price">₹ 230/ box</div>
+                <button class="btn primary" onclick="orderItem('Classic Cookies')">
                     <i class="fa-brands fa-whatsapp"></i> Order
                 </button>
             </div>
@@ -991,7 +1212,7 @@ section.reveal{
             <div class="card-content">
                 <h3>Baklava Cookie</h3>
                 <div class="price">₹400 / box</div>
-                <button class="btn primary" onclick="orderItem('Cookies')">
+                <button class="btn primary" onclick="orderItem('Baklava Cookies')">
                     <i class="fa-brands fa-whatsapp"></i> Order
                 </button>
             </div>
@@ -1053,6 +1274,9 @@ section.reveal{
     </div>
 </section>
 
+
+
+
 <div class="section-divider">
     <span><i class="fa-solid fa-star"></i></span>
 </div>
@@ -1083,6 +1307,9 @@ section.reveal{
 
     </div>
 </section>
+
+
+
 <section id="contact" class="cta">
     <section id="contact" class="cta reveal"></section>
     <div class="cta-container">
@@ -1130,11 +1357,20 @@ section.reveal{
         <a href="https://wa.me/7069577888" target="_blank">
             <i class="fa-brands fa-whatsapp"></i>
         </a>
+  <a href="tel:+917069577888"target="_blank">
+            <i class="fa-solid fa-phone"></i>
+        </a>
+      
+        <a href="mailto:palcreation.72022@gmail.com">
+    <i class="fa-solid fa-envelope"></i> 
+</a>
+
+
     </div>
 </footer>
 
 <div class="copyright">
-    © 2026 Pal's Creation • Made with love
+  © 2026 Pal's Creation • Freshly baked with love & premium ingredients ✨
 </div>
 
 <a href="#" class="whatsapp" onclick="orderNow()">
@@ -1144,8 +1380,17 @@ section.reveal{
 <script>
 window.onload = () => {
     const loader = document.getElementById("loader");
-    loader.style.opacity = "0";
-    loader.style.visibility = "hidden";
+
+    setTimeout(() => {
+        loader.style.opacity = "0";
+        loader.style.visibility = "hidden";
+
+        /* always start from hero/top */
+      window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+});
+    }, 1500);
 };
 
 function toggleMenu(){
