@@ -1445,6 +1445,105 @@ footer::before{
         transform:scale(1);
     }
 }
+
+.hero-slider{
+    position:relative;
+    width:420px;
+    max-width:100%;
+}
+
+.hero-slider img{
+    width:100%;
+    border-radius:22px;
+    box-shadow:0 20px 40px rgba(0,0,0,.1);
+    transition:opacity 0.8s ease, transform 0.8s ease;
+}
+
+.hero-slider img.fade{
+    opacity:0;
+    transform:scale(1.04);
+}
+
+.hero-slider{
+    width:420px;
+    max-width:100%;
+    position:relative;
+}
+
+.slider-container{
+    position:relative;
+    overflow:hidden;
+    border-radius:22px;
+}
+
+#heroImage{
+    width:100%;
+    height:auto;
+    border-radius:22px;
+    box-shadow:0 20px 40px rgba(0,0,0,.1);
+    transition:opacity 0.8s ease, transform 0.8s ease;
+}
+
+#heroImage.fade{
+    opacity:0;
+    transform:scale(1.03);
+}
+
+/* arrows */
+.slider-arrow{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:46px;
+    height:46px;
+    border:none;
+    border-radius:50%;
+    background:rgba(255,255,255,0.85);
+    backdrop-filter:blur(10px);
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    cursor:pointer;
+    z-index:5;
+    transition:all 0.3s ease;
+}
+
+.slider-arrow:hover{
+    transform:translateY(-50%) scale(1.08);
+    box-shadow:0 14px 28px rgba(255,126,166,0.18);
+}
+
+.slider-arrow.left{
+    left:14px;
+}
+
+.slider-arrow.right{
+    right:14px;
+}
+
+/* dots */
+.slider-dots{
+    position:absolute;
+    bottom:18px;
+    left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    gap:10px;
+    z-index:5;
+}
+
+.slider-dot{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.7);
+    cursor:pointer;
+    transition:all 0.3s ease;
+}
+
+.slider-dot.active{
+    width:26px;
+    border-radius:20px;
+    background:#ff7ea6;
+}
 </style>
 </head>
 <body>
@@ -1489,9 +1588,21 @@ footer::before{
         </button>
     </div>
 
-    <div class="hero-card">
-        <img src="cake1.jpeg" alt="Pal's Creation">
+    <div class="hero-card hero-slider">
+    <div class="slider-container">
+        <img id="heroImage" src="cake1.jpeg" alt="Pal's Creation">
+
+        <button class="slider-arrow left" onclick="prevSlide()">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        <button class="slider-arrow right" onclick="nextSlide()">
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+        <div class="slider-dots" id="sliderDots"></div>
     </div>
+</div>
 </section>
 <div class="section-divider">
     <span><i class="fa-solid fa-cake-candles"></i></span>
@@ -2051,6 +2162,66 @@ setInterval(function(){
         showSecurityPopup();
     }
 }, 1000);
+
+
+const heroSlides = [
+   "cake1.jpeg",
+    "donut.png",
+    "brownie.jpg",
+];
+
+let currentSlide = 0;
+const heroImage = document.getElementById("heroImage");
+const dotsContainer = document.getElementById("sliderDots");
+
+/* create dots */
+heroSlides.forEach((_, index) => {
+    const dot = document.createElement("div");
+    dot.classList.add("slider-dot");
+    if(index === 0) dot.classList.add("active");
+
+    dot.addEventListener("click", () => {
+        goToSlide(index);
+    });
+
+    dotsContainer.appendChild(dot);
+});
+
+function updateDots(){
+    document.querySelectorAll(".slider-dot").forEach((dot, index)=>{
+        dot.classList.toggle("active", index === currentSlide);
+    });
+}
+
+function showSlide(index){
+    heroImage.classList.add("fade");
+
+    setTimeout(()=>{
+        heroImage.src = heroSlides[index];
+        heroImage.classList.remove("fade");
+        updateDots();
+    }, 400  );
+}
+
+function nextSlide(){
+    currentSlide = (currentSlide + 1) % heroSlides.length;
+    showSlide(currentSlide);
+}
+
+function prevSlide(){
+    currentSlide = (currentSlide - 1 + heroSlides.length) % heroSlides.length;
+    showSlide(currentSlide);
+}
+
+function goToSlide(index){
+    currentSlide = index;
+    showSlide(currentSlide);
+}
+
+/* auto slide */
+setInterval(nextSlide, 3500);
+
+
 </script>
 <div id="securityPopup" class="security-popup">
     <div class="security-box">
