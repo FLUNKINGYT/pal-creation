@@ -1074,6 +1074,235 @@ footer::before{
     height:1px;
     background:linear-gradient(to right, transparent, #ff7ea6, transparent);
 }
+
+
+.menu-controls{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:18px;
+    flex-wrap:wrap;
+    margin-bottom:35px;
+}
+
+.search-box{
+    position:relative;
+    width:340px;
+    max-width:100%;
+}
+
+.search-box i{
+    position:absolute;
+    left:16px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#999;
+    font-size:14px;
+}
+
+.search-box input{
+    width:100%;
+    padding:14px 18px 14px 44px;
+    border:none;
+    border-radius:50px;
+    background:rgba(255,255,255,0.85);
+    backdrop-filter:blur(10px);
+    box-shadow:0 8px 20px rgba(0,0,0,0.06);
+    font-size:14px;
+    outline:none;
+}
+
+#menuSort{
+    appearance:none;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+
+    padding:14px 48px 14px 20px;
+    border:none;
+    border-radius:50px;
+    background:rgba(255,255,255,0.88);
+    backdrop-filter:blur(14px);
+    box-shadow:0 10px 24px rgba(0,0,0,0.06);
+    font-size:14px;
+    font-weight:500;
+    color:#444;
+    outline:none;
+    cursor:pointer;
+    min-width:220px;
+    transition:all 0.3s ease;
+
+    /* custom arrow */
+    background-image:
+        linear-gradient(45deg, transparent 50%, #ff7ea6 50%),
+        linear-gradient(135deg, #ff7ea6 50%, transparent 50%);
+    background-position:
+        calc(100% - 22px) 50%,
+        calc(100% - 16px) 50%;
+    background-size:6px 6px, 6px 6px;
+    background-repeat:no-repeat;
+}
+
+#menuSort:hover{
+    box-shadow:0 14px 28px rgba(255,126,166,0.14);
+    transform:translateY(-2px);
+}
+
+#menuSort:focus{
+    box-shadow:0 0 0 3px rgba(255,126,166,0.18);
+}
+
+
+.hamper-preview{
+    margin:14px 0 18px;
+    padding:12px 14px;
+    background:rgba(255,248,246,0.85);
+    border-radius:14px;
+    border:1px solid rgba(255,126,166,0.08);
+}
+
+.hamper-preview p{
+    font-size:13px;
+    color:#555;
+    margin-bottom:4px;
+    line-height:1.5;
+}
+
+.hamper-preview span{
+    font-size:12px;
+    color:#ff7ea6;
+    font-weight:500;
+}
+
+.hamper-preview{
+    max-height:40px;
+    overflow:hidden;
+    transition:0.35s ease;
+}
+
+.card:hover .hamper-preview{
+    max-height:100px;
+}
+
+.custom-dropdown{
+    position:relative;
+    width:240px;
+}
+
+.dropdown-selected{
+    width:100%;
+    height:54px;
+    padding:0 18px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.9);
+    backdrop-filter:blur(14px);
+    box-shadow:0 10px 25px rgba(0,0,0,0.06);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    cursor:pointer;
+    transition:all 0.3s ease;
+}
+
+.dropdown-selected:hover{
+    box-shadow:0 14px 28px rgba(255,126,166,0.14);
+    transform:translateY(-2px);
+}
+.dropdown-options{
+    width:100%;
+}
+
+.dropdown-options{
+    position:absolute;
+    top:110%;
+    left:0;
+    width:100%;
+    background:rgba(255,255,255,0.96);
+    backdrop-filter:blur(18px);
+    border-radius:20px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.08);
+    overflow:hidden;
+    opacity:0;
+    transform:translateY(-10px);
+    pointer-events:none;
+    transition:0.3s ease;
+    z-index:100;
+}
+
+.dropdown-options.active{
+    opacity:1;
+    transform:translateY(0);
+    pointer-events:auto;
+}
+
+.dropdown-options div{
+    padding:14px 18px;
+    cursor:pointer;
+    transition:0.25s ease;
+}
+
+.dropdown-options div:hover{
+    background:linear-gradient(135deg,#fff0f4,#ffeaf0);
+    color:#ff7ea6;
+    padding-left:24px;
+}
+
+.menu-controls{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:18px;
+    flex-wrap:wrap;
+    margin-bottom:40px;
+}
+
+/* SAME WIDTH FOR BOTH */
+.search-box,
+.custom-dropdown{
+    width:320px;
+    max-width:100%;
+}
+
+/* SAME HEIGHT */
+.search-box input,
+.dropdown-selected{
+    height:54px;
+}
+
+
+.search-box{
+    position:relative;
+    width:320px;
+    max-width:100%;
+}
+
+.search-box input{
+    width:100%;
+    height:54px;
+    padding:0 18px 0 48px;
+    border:none;
+    border-radius:20px;
+    background:rgba(255,255,255,0.9);
+    backdrop-filter:blur(14px);
+    box-shadow:0 10px 25px rgba(0,0,0,0.06);
+    font-size:14px;
+    outline:none;
+    transition:all 0.3s ease;
+}
+
+.search-box input:hover,
+.search-box input:focus{
+    box-shadow:0 14px 28px rgba(255,126,166,0.14);
+    transform:translateY(-2px);
+}
+
+.search-box i{
+    position:absolute;
+    left:18px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#ff7ea6;
+    font-size:14px;
+}
 </style>
 </head>
 <body>
@@ -1129,13 +1358,36 @@ footer::before{
     <h2 class="section-title">Our Signature Menu</h2>
     <p class="menu-subtitle">Freshly baked delights crafted with love for every celebration</p>
 
+
     <div class="menu-tabs">
-        <button class="tab active" onclick="filterMenu('all', this)">All</button>
-        <button class="tab" onclick="filterMenu('cake', this)">Cakes</button>
-        <button class="tab" onclick="filterMenu('cupcake', this)">Cupcakes</button>
-        <button class="tab" onclick="filterMenu('cookie', this)">Cookies</button>
-        <button class="tab" onclick="filterMenu('brownie', this)">Brownies</button>
-        <button class="tab" onclick="filterMenu('custom', this)">Theme Cakes</button>
+        <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input 
+            type="text" 
+            id="menuSearch" 
+            placeholder="Search cakes, cupcakes, hampers..."
+            onkeyup="searchMenu()"
+        >
+    </div>
+
+   <div class="custom-dropdown" id="customDropdown">
+    <div class="dropdown-selected" onclick="toggleDropdown()">
+        <span id="selectedText">All Categories</span>
+        <i class="fa-solid fa-chevron-down"></i>
+    </div>
+
+    <div class="dropdown-options" id="dropdownOptions">
+        <div onclick="selectCategory('all', 'All Categories')">All Categories</div>
+        <div onclick="selectCategory('cake', 'Cakes')">Cakes</div>
+        <div onclick="selectCategory('cupcake', 'Cupcakes')">Cupcakes</div>
+        <div onclick="selectCategory('cookie', 'Cookies')">Cookies</div>
+        <div onclick="selectCategory('brownie', 'Brownies')">Brownies</div>
+        <div onclick="selectCategory('donut', 'Donuts')">Donuts</div>
+        <div onclick="selectCategory('hamper', 'Hampers')">Hampers</div>
+        <div onclick="selectCategory('custom', 'Theme Cakes')">Theme Cakes</div>
+    </div>
+</div>
+</div>
     </div>
 
     <div class="product-grid">
@@ -1229,6 +1481,82 @@ footer::before{
                 </button>
             </div>
         </div>
+
+
+<!-- HAMPERS -->
+<div class="card menu-item" data-category="hamper">
+    <img src="hamper.jpeg" alt="Hamper 1 ">
+    <div class="card-content">
+        <h3>Hamper 1  </h3>
+        <div class="price"> ₹499</div>
+
+        <div class="hamper-preview">
+    <p>🍩 Donuts • 🍪 Cookies • 🍫  Chocolates</p>
+</div>
+
+        <button class="btn primary" onclick="orderItem('Hamper 1 ')">
+            <i class="fa-brands fa-whatsapp"></i> Order
+        </button>
+    </div>
+</div>
+
+<div class="card menu-item" data-category="hamper">
+    <img src="hamper.jpeg" alt="Hamper 2 ">
+    <div class="card-content">
+        <h3>Hamper 2  </h3>
+        <div class="price"> ₹399</div>
+
+        <div class="hamper-preview">
+    <p>🍩 Jar Cake • 🍪 Cookies </p>
+</div>
+        <button class="btn primary" onclick="orderItem('Hamper 2 ')">
+            <i class="fa-brands fa-whatsapp"></i> Order
+        </button>
+    </div>
+</div>
+
+<div class="card menu-item" data-category="hamper">
+    <img src="hamper.jpeg" alt="Hamper 3 ">
+    <div class="card-content">
+        <h3>Hamper 3  </h3>
+        <div class="price"> ₹499</div>
+
+         <div class="hamper-preview">
+    <p>🍩 Donuts • 🍪 Nutty Berry • 🧁 Cupcakes • 🍫 Bar </p>
+</div>
+
+        <button class="btn primary" onclick="orderItem('Hamper 3 ')">
+            <i class="fa-brands fa-whatsapp"></i> Order
+        </button>
+    </div>
+</div>
+
+<div class="card menu-item" data-category="hamper">
+    <img src="hamper.jpeg" alt="Hamper 4 ">
+    <div class="card-content">
+        <h3>Hamper 4  </h3>
+        <div class="price"> ₹320</div>
+
+        <div class="hamper-preview">
+    <p>🍩 Jar Cake • 🍫  Chocolates</p>
+</div>
+
+        <button class="btn primary" onclick="orderItem('Hamper 4 ')">
+            <i class="fa-brands fa-whatsapp"></i> Order
+        </button>
+    </div>
+</div>
+
+<div class="card menu-item" data-category="donut">
+    <img src="donut.png" alt="Premium Donuts">
+    <div class="card-content">
+        <h3>Premium Donuts</h3>
+        <div class="price">₹280 / box</div>
+        <button class="btn primary" onclick="orderItem('Premium Donuts')">
+            <i class="fa-brands fa-whatsapp"></i> Order
+        </button>
+    </div>
+</div>
 
         <!-- CUSTOM THEME CAKES -->
         <div class="card menu-item" data-category="custom">
@@ -1453,6 +1781,55 @@ function filterMenu(category, button){
                 card.style.opacity = "1";
                 card.style.transform = "translateY(0)";
             }, 100);
+        } else {
+            card.style.display = "none";
+        }
+    });
+}
+
+
+function searchMenu(){
+    const input = document.getElementById("menuSearch").value.toLowerCase();
+    const cards = document.querySelectorAll(".menu-item");
+
+    cards.forEach(card => {
+        const title = card.querySelector("h3").innerText.toLowerCase();
+
+        if(title.includes(input)){
+            card.style.display = "block";
+        } else {
+            card.style.display = "none";
+        }
+    });
+}
+
+
+function sortMenu(){
+    const category = document.getElementById("menuSort").value;
+    const cards = document.querySelectorAll(".menu-item");
+
+    cards.forEach(card => {
+        if(category === "all" || card.dataset.category === category){
+            card.style.display = "block";
+        } else {
+            card.style.display = "none";
+        }
+    });
+}
+
+function toggleDropdown(){
+    document.getElementById("dropdownOptions").classList.toggle("active");
+}
+
+function selectCategory(category, text){
+    document.getElementById("selectedText").innerText = text;
+    document.getElementById("dropdownOptions").classList.remove("active");
+
+    const cards = document.querySelectorAll(".menu-item");
+
+    cards.forEach(card => {
+        if(category === "all" || card.dataset.category === category){
+            card.style.display = "block";
         } else {
             card.style.display = "none";
         }
