@@ -1303,6 +1303,148 @@ footer::before{
     color:#ff7ea6;
     font-size:14px;
 }
+
+
+/* ===== PREMIUM SECURITY POPUP ===== */
+.security-popup{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.35);
+    backdrop-filter:blur(10px);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:10000;
+    opacity:0;
+    visibility:hidden;
+    transition:all 0.4s ease;
+}
+
+.security-popup.show{
+    opacity:1;
+    visibility:visible;
+}
+
+/* popup box */
+.security-box{
+    width:430px;
+    max-width:90%;
+    padding:34px;
+    border-radius:28px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+
+    background:rgba(255,255,255,0.88);
+    backdrop-filter:blur(18px);
+
+    box-shadow:0 25px 60px rgba(0,0,0,0.15);
+
+    transform:scale(0.75) translateY(40px);
+    opacity:0;
+    transition:all 0.45s cubic-bezier(.22,1,.36,1);
+}
+
+/* animate popup */
+.security-popup.show .security-box{
+    transform:scale(1) translateY(0);
+    opacity:1;
+}
+
+/* premium shimmer glow */
+.security-box::before{
+    content:"";
+    position:absolute;
+    top:-50%;
+    left:-50%;
+    width:200%;
+    height:200%;
+    background:linear-gradient(
+        120deg,
+        transparent 30%,
+        rgba(255,255,255,0.4) 50%,
+        transparent 70%
+    );
+    transform:rotate(25deg);
+    animation:shimmer 3s linear infinite;
+}
+
+/* icon animation */
+.security-box i{
+    font-size:42px;
+    color:#ff7ea6;
+    margin-bottom:16px;
+    display:inline-block;
+    animation:iconFloat 2.5s ease-in-out infinite;
+}
+
+/* heading */
+.security-box h3{
+    font-family:'Playfair Display',serif;
+    font-size:30px;
+    margin-bottom:12px;
+}
+
+/* text */
+.security-box p{
+    color:#666;
+    line-height:1.7;
+    font-size:14px;
+    margin-bottom:22px;
+}
+
+/* button */
+.security-box button{
+    padding:12px 26px;
+    border:none;
+    border-radius:50px;
+    background:linear-gradient(135deg,#f4b6c2,#ff7ea6);
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+    transition:all 0.3s ease;
+}
+
+.security-box button:hover{
+    transform:translateY(-2px) scale(1.03);
+    box-shadow:0 12px 25px rgba(255,126,166,0.28);
+}
+
+/* animations */
+@keyframes iconFloat{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-6px);
+    }
+}
+
+@keyframes shimmer{
+    from{
+        transform:translateX(-100%) rotate(25deg);
+    }
+    to{
+        transform:translateX(100%) rotate(25deg);
+    }
+}
+
+
+.security-popup.show .security-box{
+    animation:popupBounce 0.5s ease;
+}
+
+@keyframes popupBounce{
+    0%{
+        transform:scale(0.85);
+    }
+    60%{
+        transform:scale(1.04);
+    }
+    100%{
+        transform:scale(1);
+    }
+}
 </style>
 </head>
 <body>
@@ -1485,7 +1627,7 @@ footer::before{
 
 <!-- HAMPERS -->
 <div class="card menu-item" data-category="hamper">
-    <img src="hamper.jpeg" alt="Hamper 1 ">
+    <img src="Hamper1.jpeg" alt="Hamper 1 ">
     <div class="card-content">
         <h3>Hamper 1  </h3>
         <div class="price"> ₹499</div>
@@ -1501,7 +1643,7 @@ footer::before{
 </div>
 
 <div class="card menu-item" data-category="hamper">
-    <img src="hamper.jpeg" alt="Hamper 2 ">
+    <img src="Hamper2.jpeg" alt="Hamper 2 ">
     <div class="card-content">
         <h3>Hamper 2  </h3>
         <div class="price"> ₹399</div>
@@ -1516,7 +1658,7 @@ footer::before{
 </div>
 
 <div class="card menu-item" data-category="hamper">
-    <img src="hamper.jpeg" alt="Hamper 3 ">
+    <img src="Hamper3.jpeg" alt="Hamper 3 ">
     <div class="card-content">
         <h3>Hamper 3  </h3>
         <div class="price"> ₹499</div>
@@ -1532,7 +1674,7 @@ footer::before{
 </div>
 
 <div class="card menu-item" data-category="hamper">
-    <img src="hamper.jpeg" alt="Hamper 4 ">
+    <img src="Hamper 4.jpeg" alt="Hamper 4 ">
     <div class="card-content">
         <h3>Hamper 4  </h3>
         <div class="price"> ₹320</div>
@@ -1835,7 +1977,91 @@ function selectCategory(category, text){
         }
     });
 }
-</script>
 
+
+function showSecurityPopup(){
+    const popup = document.getElementById("securityPopup");
+
+    popup.classList.add("show");
+
+    clearTimeout(popup.autoClose);
+
+    popup.autoClose = setTimeout(() => {
+        popup.classList.remove("show");
+    }, 2500);
+}
+
+function closeSecurityPopup(){
+    document.getElementById("securityPopup").classList.remove("show");
+}
+
+function closeSecurityPopup(){
+    document.getElementById("securityPopup").classList.remove("show");
+}
+
+/* block right click */
+document.addEventListener("contextmenu", function(e){
+    e.preventDefault();
+    showSecurityPopup();
+});
+
+/* block common devtools shortcuts */
+document.addEventListener("keydown", function(e){
+
+    /* F12 */
+    if(e.key === "F12"){
+        e.preventDefault();
+        showSecurityPopup();
+    }
+
+    /* Ctrl+Shift+I */
+    if(e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "i"){
+        e.preventDefault();
+        showSecurityPopup();
+    }
+
+    /* Ctrl+Shift+J */
+    if(e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "j"){
+        e.preventDefault();
+        showSecurityPopup();
+    }
+
+    /* Ctrl+Shift+C */
+    if(e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "c"){
+        e.preventDefault();
+        showSecurityPopup();
+    }
+
+    /* Ctrl+U */
+    if(e.ctrlKey && e.key.toLowerCase() === "u"){
+        e.preventDefault();
+        showSecurityPopup();
+    }
+
+    /* Ctrl+S */
+    if(e.ctrlKey && e.key.toLowerCase() === "s"){
+        e.preventDefault();
+        showSecurityPopup();
+    }
+});
+
+setInterval(function(){
+    if(window.outerWidth - window.innerWidth > 160 ||
+       window.outerHeight - window.innerHeight > 160){
+        showSecurityPopup();
+    }
+}, 1000);
+</script>
+<div id="securityPopup" class="security-popup">
+    <div class="security-box">
+        <i class="fa-solid fa-shield-heart"></i>
+        <h3>Protected Experience</h3>
+        <p>
+            This website’s content and design are protected.
+            Certain actions have been restricted for security and brand protection.
+        </p>
+        <button onclick="closeSecurityPopup()">Understood</button>
+    </div>
+</div>
 </body>
 </html>
